@@ -15,6 +15,20 @@ public class Location {
     private String name;
     private String address;
 
+    public Location(long id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    public Location(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public Location() {
+    }
+
     public long getId() {
         return id;
     }
