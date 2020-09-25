@@ -1,21 +1,19 @@
 package com.udacity.graphql.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", initialValue = 6)
+    private Long id;
 
     private String name;
     private String address;
 
-    public Location(long id, String name, String address) {
+    public Location(Long id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -29,11 +27,11 @@ public class Location {
     public Location() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

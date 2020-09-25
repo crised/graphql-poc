@@ -18,7 +18,7 @@ public class Mutation implements GraphQLMutationResolver {
     }
 
     public Location newLocation(String name, String address) {
-        Location location = new Location();
+        Location location = new Location(name, address);
         locationRepository.save(location);
         return location;
     }
