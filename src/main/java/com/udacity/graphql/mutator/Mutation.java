@@ -11,6 +11,10 @@ import java.util.Optional;
 @Component
 public class Mutation implements GraphQLMutationResolver {
 
+    /*
+    Avoid using repository directly!
+    A service should be used instead.
+     */
     private LocationRepository locationRepository;
 
     public Mutation(LocationRepository locationRepository) {
