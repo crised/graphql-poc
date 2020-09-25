@@ -14,7 +14,7 @@ public interface DogRepository extends CrudRepository<Dog, Long> {
     @Query(value = "SELECT d.id, d.breed FROM dog d WHERE d.id = :id", nativeQuery = true)
     String findDogBreedById(Long id);
 
-    @Query(value = "SELECT d.name FROM dog d")
+    @Query(value = "SELECT d.name FROM dog d", nativeQuery = true)
     List<String> findAllDogNames();
 
     @Query(value = "UPDATE dog d SET d.name = :newName WHERE d.name = :existingName", nativeQuery = true)
