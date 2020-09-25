@@ -10,6 +10,7 @@ import com.udacity.graphql.repository.LocationRepository;
 import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.Option;
+import java.lang.management.BufferPoolMXBean;
 import java.util.Optional;
 
 @Component
@@ -63,6 +64,12 @@ public class Mutation implements GraphQLMutationResolver {
             return dog;
 
         } else throw new DogNotFoundException("DogN Not Found", id);
+    }
+
+    public Boolean deleteDogBreed(String breed){
+        ;
+        dogRepository.deleteAll(dogRepository.findDogsByBreed(breed));
+        return true;
     }
 
 

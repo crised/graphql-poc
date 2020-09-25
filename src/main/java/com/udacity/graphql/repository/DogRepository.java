@@ -1,6 +1,7 @@
 package com.udacity.graphql.repository;
 
 import com.udacity.graphql.model.Dog;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -17,10 +18,14 @@ public interface DogRepository extends CrudRepository<Dog, Long> {
     @Query(value = "SELECT d.name FROM dog d", nativeQuery = true)
     List<String> findAllDogNames();
 
+    @Query(value = "SELECT * FROM dog d WHERE d.breed = :breed", nativeQuery = true)
+    List<Dog> findDogsByBreed(String breed);
+
     @Query(value = "UPDATE dog d SET d.name = :newName WHERE d.id = :id", nativeQuery = true)
     Dog updateDogName(Long id, String newName);
 
-    @Query(value = "DELETE FROM dog d WHERE d.breed = :breed", nativeQuery = true)
-    void deleteDogBreed(String breed);
+//    @Query(value = "DELETE FROM dog d WHERE d.breed = :breed", nativeQuery = true)
+//    @Modifying
+//    boolean deleteDogBreed(String breed);
 
 }
