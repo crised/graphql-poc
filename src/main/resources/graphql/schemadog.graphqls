@@ -11,3 +11,7 @@ type Query {
  findAllDogNames: [String]!
  findAllDogs: [Dog]!
 }
+
+type Mutation {
+ updateDogName(id:ID!, newName: String!): Dog!
+}
