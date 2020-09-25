@@ -37,8 +37,11 @@ public class Mutation implements GraphQLMutationResolver {
     }
 
     public boolean deleteLocation(Long id) {
-        locationRepository.deleteById(id);
-        return true;
+        if (locationRepository.existsById(id)){
+            locationRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 
