@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.Option;
 import java.lang.management.BufferPoolMXBean;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -63,12 +64,13 @@ public class Mutation implements GraphQLMutationResolver {
             dogRepository.save(dog);
             return dog;
 
-        } else throw new DogNotFoundException("DogN Not Found", id);
+        } else throw new DogNotFoundException("Dog Id Not Found", id);
     }
 
     public Boolean deleteDogBreed(String breed){
-        ;
-        dogRepository.deleteAll(dogRepository.findDogsByBreed(breed));
+        List<Dog> dogs = dogRepository.findDogsByBreed(breed);
+        if(dogs.isEmpty()) throw new DogNotFoundException("Dog breed not found", breed);
+        dogRepository.deleteAll(dogs);
         return true;
     }
 
